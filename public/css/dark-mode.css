@@ -1,0 +1,256 @@
+/*
+ * dark-mode.css
+ * Define as variáveis de cor para o tema claro (padrão) e o tema escuro.
+ * O tema escuro é ativado quando o atributo data-theme="dark" está presente no elemento <html>.
+ */
+
+/* Variáveis de cor para o Tema Claro (Padrão) */
+:root {
+    /* Fundo */
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    /* Fundo principal claro */
+    --gray-100: white;
+    --gray-200: white;
+    --gray-200-black: rgb(20, 28, 46);
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    /* Texto mais escuro */
+
+    --inverso-gray-900: #e2e8f0;
+
+    --transparencia-quase: rgba(0, 0, 0, 0.15);
+
+    /* Cores principais no light */
+    --primary-blue: #0066cc;
+    --primary-blue-dark: #0052a3;
+    --primary-blue-light: #60a5fa;
+    --secondary-blue: #eff6ff;
+    /* mais sutil para superfícies */
+
+    /* Texto */
+    --text-primary: #161616;
+    --text-secondary: #374151;
+    --text-muted: #6b7280;
+    --text-titulo: #0066cc;
+    --text-button: red;
+    --text-status-complet: #065f46;
+
+    /* Status no light */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #3b82f6;
+
+    /* Sombras */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+
+    /* ScrollBar (Padrão) */
+    --scroll-thumb: #9ca3af;
+    --scroll-track: #f3f4f6;
+
+    --cor-gradient-codigo-stat: linear-gradient(135deg, #dae7f1 0%, #cee0f5 100%);
+
+    --btn-segundario: #e5e7eb;
+    --btn-exclusao: #c76666;
+    --text-primary-input: #161616;
+    /* Trocas de cores especificas(não nas que ja tem) */
+}
+
+/* Variáveis de cor para o Tema Escuro (Fornecido pelo Usuário) */
+html[data-theme="dark"] {
+    /* Fundo */
+    --white: #0f172a;
+    /* substitui branco por gray-900 */
+    --gray-50: #0f172a;
+    /* fundo principal */
+    --gray-100: #1a2538;
+    --gray-200: #2a3e5f;
+    --gray-200-black: #2a3e5f;
+    --gray-300: #273348;
+    --gray-400: #475569;
+    --gray-500: #64748b;
+    --gray-600: #7b8ca5;
+    --gray-700: #94a3b8;
+    --gray-800: #1f6bcf;
+    --gray-900: #e2e8f0;
+    /* texto mais claro */
+    --inverso-gray-900: #1c2742;
+    /* para elementos claros em ambiente escuro
+    /* Cores principais no dark (levemente desaturadas) */
+
+    --transparencia-quase: rgba(0, 0, 0, 0.85);
+
+    --primary-blue: #4e8bd1;
+    --primary-blue-dark: #3c73b3;
+    --primary-blue-light: #70a3df;
+    --secondary-blue: #1b2a3d;
+    /* mais sutil para superfícies */
+
+    /* Texto */
+    --text-primary: #b6d4f7;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-titulo: #ffffff;
+    --text-button: #ffffff;
+    --text-status-complet: #089c72;
+
+    /* Status no dark (tons mais suaves) */
+    --success: #0c8f66;
+    --warning: #d8890a;
+    --error: #d43b3b;
+    --info: #2a6adf;
+
+    /* Sombras adaptadas para dark */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.6);
+    --shadow: 0 2px 5px rgba(0, 0, 0, 0.55);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.45);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+    /* ScrollBar */
+    --scroll-thumb: #3c73b3;
+    --scroll-track: #1a2538;
+    --cor-gradient-codigo-stat: linear-gradient(135deg, #223359 0%, #2a3e5f 100%);
+
+    /* Button */
+
+    --btn-segundario: #739bdb;
+    --text-primary-input: #b6d4f7;
+}
+
+/* Aplicação das variáveis de cor nos elementos principais */
+/* Isso é crucial para que o tema funcione sem alterar o HTML */
+
+/* Fundo da página e texto principal */
+body {
+    background-color: var(--gray-50);
+    color: var(--text-primary);
+}
+
+/* Cabeçalho e Rodapé */
+.header,
+footer {
+    background-color: var(--gray-100);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-md);
+}
+
+/* Botões e elementos interativos (nav-btn, etc.) */
+.nav-btn {
+    color: var(--text-button);
+}
+
+.nav-btn:hover {
+    background-color: var(--gray-200);
+    color: var(--primary-blue-light);
+}
+
+/* Containers e Cards (divs) - usando gray-100 ou gray-200 para contraste */
+.container,
+.main-content>div,
+.modal-content,
+.toast-container>div {
+    background-color: transparent;
+    color: var(--text-primary);
+    box-shadow: transparent;
+}
+
+.content-name {
+    background: var(--white);
+    color: var(--text-primary-input);
+}
+
+.access-option {
+    background: var(--white);
+    color: var(--text-primary);
+}
+
+.container-simples {
+    background-color: var(--white);
+    color: var(--text-primary);
+    box-shadow: var(--shadow);
+}
+
+/* Elementos de input e formulário */
+textarea,
+select {
+    background-color: var(--gray-200);
+    color: var(--text-primary-input) !important;
+    box-shadow: 1px 1px 1px var(--gray-400);
+}
+
+input {
+    background-color: var(--gray-200);
+    color: var(--text-primary-input) !important;
+    box-shadow: 1px 1px 1px var(--gray-400);
+}
+
+/* Links e texto secundário */
+a,
+.text-secondary {
+    color: var(--primary-blue);
+}
+
+/* Cores de status */
+.success {
+    color: var(--success);
+}
+
+.warning {
+    color: var(--warning);
+}
+
+.error {
+    color: var(--error);
+}
+
+.info {
+    color: var(--info);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar-thumb {
+    background: var(--scroll-thumb);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scroll-track);
+}
+
+/* Estilos específicos para o botão de tema */
+#theme-toggle-button {
+    /* Estilo para o botão que será injetado */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+#theme-toggle-button:hover {
+    background-color: var(--primary-blue-dark);
+    transform: scale(1.05);
+}
+
+#theme-toggle-button:active {
+    transform: scale(0.95);
+}

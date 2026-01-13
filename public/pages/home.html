@@ -1,0 +1,66 @@
+<div class="home-page">
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="hero-icon">
+                <img id="imagem-main" style="width:5rem" src="img/logo.png" alt="Logo Do Site">
+            </div>
+            <h1>Plataforma Educacional Interativa</h1>
+            <p class="hero-description">
+                Conectando alunos e professores em um ambiente digital moderno e intuitivo.
+            </p>
+            <div class="user-type-buttons">
+                <button class="btn btn-primary btn-large" id="buttonIicial" onclick="mostrarAcessoAluno()">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Sou Aluno</span>
+                </button>
+                <button class="btn btn-secondary btn-large" id="buttonIicial" onclick="navegarPara('teacher-panel')">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Sou Professor</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Codigo input -->
+    <div class="code-input-section" id="code-input-section" style="display: none;">
+        <div class="container">
+            <div class="code-input-content">
+                <div class="code-header">
+                    <h2>Inserir Código da Sala</h2>
+                    <p>Digite o código de 6 dígitos fornecido pelo seu professor</p>
+                </div>
+                
+                <div class="code-form">
+                    <div class="code-input-group">
+                        <input type="text" id="room-code-input" maxlength="6" placeholder="000000" class="code-input">
+                        <button class="btn btn-primary" onclick="entrarSalaPorCodigo()">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Entrar na Sala
+                        </button>
+                    </div>
+                </div>
+
+                    <button class="btn btn-secondary"  onclick="esconderAcessoAluno()">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar
+                    </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="features-section">
+        <div class="container">
+            <h2>Recursos da Plataforma</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Gestão de Ajudas</h3>
+                    <p>Permita que de forma organizada os alunos peçam ajuda</p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

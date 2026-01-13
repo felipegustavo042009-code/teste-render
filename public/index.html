@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site Educacional para interacao aluno e professor">
+    <link rel="shortcut icon" href="img/favicon.ico" type="img/x-icon">
+    <title>Sala Virtual</title>
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/sistema-atividade.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <!-- Socket.io client -->
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <img id="img-Logo" src="img/logo.gif" alt="Imagem da logo do site">
+                </div>
+                <nav class="navCelular">
+                    <button class="nav-btn" id="maisOpcao" onclick="exibirMenu()"
+                        title="Barra de opcões de voltar para o início">
+                        <i class="fas fa-bars"></i>
+                        <span></span>
+                    </button>
+                </nav>
+            </div>
+            <nav class="nav">
+                <button style="display:none" class="nav-btn" id="sair" onclick="endRoom('home')"
+                    title="Butão de voltar">
+                    <i class="fas fa-power-off"></i>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <!-- Conteúdo será carregado dinamicamente aqui -->
+    </main>
+
+    <!-- Modal Container -->
+    <div id="modal-container"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Carregando...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container container-simples" id="toast-container"></div>
+
+    <footer>
+        <div class="contato">
+            <a href="https://www.instagram.com/jasprint_/" target="_black"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/jasprint/" target="_black"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>Desenvolvimento: Pluswork.com.br</p>
+        <p>Gestão: Prof. Jailson Silva </p>
+    </footer>
+
+    <script src="js/utils.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script>window.QRCode = QRCode;</script>
+
+    <script type="module">
+        import { sistemaApi } from './js/servicos-api.js';
+        window.api = new sistemaApi();
+        import { GerenciadorSala, GerenciadorAluno, EstadoSala } from './js/room.js';
+        window.GerenciadorSala = GerenciadorSala;
+        window.GerenciadorAluno = GerenciadorAluno;
+        window.EstadoSala = EstadoSala;
+        import './js/sistema-mao.js';
+        import './js/sistema-atividade.js';
+
+    </script>
+
+    <!-- 5. Aplicação principal -->
+    <script src="js/app.js"></script>
+    <script src="js/mudanca-tema.js"></script>
+</body>
+
+</html>

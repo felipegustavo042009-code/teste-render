@@ -1,0 +1,78 @@
+<div class="student-room-page">
+    <div class="div-header">
+        <div class="room-header">
+            <div class="container">
+                <div class="room-info">
+                    <h1><i class="fas fa-users"></i> Sala Temporária</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="room-content">
+        <div class="container">
+            <div class="room-features">
+                <div class="feature-grid">
+                    <div class="feature-item container-mao" onclick="levantarMao()">
+                        <div class="feature-icon" id="iconeMao">
+                            <p>✊</p>
+                            <i class="fas fa-hand-fist" style="display: none;"></i>
+                        </div>
+                        <h3 class="statusMaoLevantada">Mão Abaixada <div class="status-circle"></div></h3>
+                        <p>Solicite a atenção do professor</p>
+                    </div>
+
+                    <div class="feature-item" onclick="abrirAtividadesAluno()">
+                        <div class="feature-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h3>Ver Atividades</h3>
+                        <p>Veja e responda atividades</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Student Activities Section -->
+<div class="content-section activities-section student-sem-scroll" id="student-activities-section" style="display: none;">
+    <div class="content-section-fundo activities-section-fundo container-simples">
+        <div class="activities-header">
+            <h2>Atividades Disponíveis</h2>
+            <div class="activities-actions">
+                <button class="btn btn-secondary" onclick="fecharTodasSecoes()">
+                    <i class="fas fa-times"></i> Fechar
+                </button>
+            </div>
+        </div>
+        <div class="activities-list" id="student-activities-list">
+            <!-- Lista de atividades será carregada aqui -->
+        </div>
+    </div>
+</div>
+
+<!-- Student Name Modal -->
+<div class="modal content-name" id="student-name-modal" style="display: flex;">
+    <div class="modal-content content-name student-name-modal-content">
+        <div class="modal-header">
+            <h3>Bem-vindo à sala!</h3>
+        </div>
+        <div class="modal-body">
+            <p>Digite seu nome:</p>
+            <div class="form-group">
+                <input type="text" id="student-name-input" placeholder="Digite seu nome completo" maxlength="50" class="student-name-input">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="confirmarNomeAluno()">
+                <i class="fas fa-check"></i>
+                Confirmar
+            </button>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+</script>
+<script type="module" src="../js/sistema-mao.js"></script>

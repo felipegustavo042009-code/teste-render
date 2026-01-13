@@ -1,0 +1,231 @@
+<div class="panel-page teacher-panel">
+    <div class="panel-header">
+        <h1><i class="fas fa-chalkboard-teacher"></i> Painel do Professor</h1>
+
+        <!-- Room Code Display -->
+        <div class="room-code-display">
+            <div class="code-info">
+                <span class="code-label">Código da Sala:</span>
+                <span class="code-value" id="teacher-room-code">------</span>
+                <button class="btn btn-small btn-secondary" id="gerarNovo" onclick="gerarNovoCodigoSala()">
+                    <i class="fas fa-sync-alt"></i>
+                    Gerar Novo
+                </button>
+            </div>
+            <div class="room-status">
+                <i class="fas fa-circle status-indicator active"></i>
+                <span class="student-count">(<span id="connected-students">0</span> alunos conectados)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-grid">
+        <!-- Gerar QR Code -->
+        <div class="panel-card" onclick="gerarQRCode()">
+            <div class="card-icon">
+                <i class="fas fa-qrcode"></i>
+            </div>
+            <h3>Gerar QR Code</h3>
+            <p>Crie QR Code para acesso à sala</p>
+        </div>
+
+        <!-- Atividades -->
+        <div class="panel-card" onclick="abrirAtividadesProfessor()">
+            <div class="card-icon">
+                <i class="fas fa-tasks"></i>
+            </div>
+            <h3>Atividades</h3>
+            <p>Crie e gerencie atividades</p>
+        </div>
+
+        <!-- Mãos Levantadas -->
+        <div class="panel-card" onclick="abrirMaosLevantadas()">
+            <div class="card-icon">
+                <i class="fas fa-hand-paper"></i>
+            </div>
+            <h3>Mãos Levantadas</h3>
+            <p>Veja quem quer falar</p>
+        </div>
+
+    </div>
+
+    <!-- Seções de conteúdo -->
+    <div class="content-sections">
+        <!-- QR Code Section -->
+        <div class="content-section" id="qr-code-section" style="display: none;">
+            <div class="section-header">
+                <h2>QR Code</h2>
+                <button class="btn btn-secondary fechar" onclick="fecharTodasSecoes()">
+                    <i class="fas fa-times"></i> Fechar
+                </button>
+            </div>
+            <div class="qr-code-content">
+                <div class="qr-code-display">
+                    <div class="qr-code-container" id="qr-code-container">
+                        <!-- QR Code will be generated here -->
+                    </div>
+                    <div class="qr-code-info">
+                        <p><strong>Código da Sala:</strong> <span id="qr-room-code">------</span></p>
+                    </div>
+                </div>
+                <div class="qr-code-actions">
+                    <button class="btn btn-primary" onclick="baixarQRCode()">
+                        <i class="fas fa-download"></i>
+                        Baixar QR Code
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teacher Activities Section -->
+        <div class="content-section activities-section container-simples" id="teacher-activities-section"
+            style="display: none;">
+            <div class="activities-header">
+                <h2>Gerenciar Atividades</h2>
+                <div class="activities-actions">
+                    <button class="btn-create" data-action="create-activity">
+                        <i class="fas fa-plus"></i>
+                        Criar
+                    </button>
+                    <button class="btn btn-secondary" onclick="fecharTodasSecoes()">
+                        <i class="fas fa-times"></i>
+                        Fechar
+                    </button>
+                </div>
+            </div>
+            <div class="activities-list" id="teacher-activities-list">
+                <!-- Lista de atividades será carregada aqui -->
+            </div>
+        </div>
+
+        <!-- Raised Hands Section -->
+        <div class="content-section" id="raised-hands-section" style="display: none;">
+            <div class="section-header">
+                <h2>Mãos Levantadas</h2>
+                <div class="section-actions">
+                    <button class="btn btn-create limpar" onclick="window.GerenciadorMaoLevantada.limparTodasMaos()">
+                        <i class="fas fa-eraser"></i>
+                        Limpar
+                    </button>
+                    <button class="btn btn-secondary fechar" onclick="fecharTodasSecoes()">
+                        <i class="fas fa-times"></i>
+                        Fechar
+                    </button>
+                </div>
+            </div>
+            <div class="raised-hands-list"></div>
+        </div>
+
+        <!-- Pessoas Conetadas -->
+        <div class="content-sectionfixo" id="connected-students-section">
+            <div class="section-header">
+                <h2></h2>
+                <div class="section-actions">
+                </div>
+                <div class="response-counter" id="response-counter">
+                    <!-- Contador será inserido aqui -->
+                </div>
+            </div>
+            <div class="connected-students-list" id="connected-students-list">
+                <!-- Lista de alunos será gerada aqui -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Activity Modal -->
+<div class="modal activity-modal" id="create-activity-modal" style="display: none;">
+    <div class="activity-modal-content">
+        <div class="activity-modal-header">
+            <h3 class="modal-title">Nova Atividade</h3>
+            <button class="close-modal-btn" onclick="sairAtividade()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <form class="create-activity-form" id="create-activity-form">
+            <div class="form-group">
+                <label for="activity-title">Título da Atividade</label>
+                <input type="text" id="activity-title" class="form-input" placeholder="Digite o título da atividade"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="activity-description">Descrição</label>
+                <textarea id="activity-description" class="form-textarea"
+                    placeholder="Descreva a atividade e as instruções para os alunos" required></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="activity-type">Tipo</label>
+                    <select id="activity-type" class="form-select" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="tarefa">Tarefa</option>
+                        <option value="trabalho">Trabalho</option>
+                        <option value="prova">Prova</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="activity-due-date">Prazo</label>
+                    <input type="datetime-local" id="activity-due-date" class="form-input">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" data-action="close-modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-primary" data-action="save-activity">
+                    <i class="fas fa-save"></i>
+                    Criar Atividade
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal activity-modal" id="activity-responses-modal" style="display: none;">
+    <div class="activity-modal-content">
+        <div class="activity-modal-header">
+            <h3 class="modal-title">Respostas da Atividade</h3>
+
+            <button class="close-modal-btn" data-action="close-modal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="responses-content">
+            <!-- Conteúdo das respostas será carregado aqui -->
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { GerenciadorMaoLevantada } from '../js/sistema-mao.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        GerenciadorMaoLevantada.inicializar();
+        if (EstadoSala.isTeacher && EstadoSala.roomCode) {
+            GerenciadorSala.escutarAtualizacoesSala();
+            GerenciadorSala.atualizarDisplayAlunosConectados();
+        }
+    });
+
+    window.GerenciadorMaoLevantada = GerenciadorMaoLevantada;
+    window.reconhecerMao = GerenciadorMaoLevantada.reconhecerMao;
+    window.abrirMaosLevantadas = () => {
+        document.querySelectorAll('.content-section').forEach(section => section.style.display = 'none');
+        document.getElementById('raised-hands-section').style.display = 'block';
+        GerenciadorMaoLevantada.atualizarDisplayMaosProfessor();
+    };
+</script>
+
+<script type="module">
+    import { SistemaAtividades } from '../js/sistema-atividade.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!window.sistemaAtividades) {
+            window.sistemaAtividades = new SistemaAtividades();
+        }
+    });
+</script>

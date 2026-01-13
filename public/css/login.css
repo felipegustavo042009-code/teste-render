@@ -1,0 +1,198 @@
+/* Login Page Styles */
+.login-page {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--white) 100%);
+}
+
+.login-container {
+    width: 100%;
+    max-width: 480px;
+    animation: slideIn 0.4s ease-out;
+}
+
+.login-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    padding: 2rem 3rem;
+    border: 1px solid var(--gray-200);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-icon {
+    font-size: 4rem;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing);
+    animation: float 3s ease-in-out infinite;
+}
+
+.login-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing-sm);
+}
+
+.login-header p {
+    color: var(--gray-600);
+    font-size: 1rem;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-weight: 500;
+    color: var(--gray-700);
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.95rem;
+}
+
+.form-group label i {
+    color: var(--primary-blue);
+}
+
+.form-input {
+    width: 100%;
+    padding: var(--spacing) var(--spacing-md);
+    border: 2px solid var(--gray-300);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    color: var(--gray-800);
+    transition: var(--transition);
+    background: var(--white);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.form-input::placeholder {
+    color: var(--gray-400);
+}
+
+/* Button Styles */
+.btn-block {
+    width: 100%;
+    justify-content: center;
+}
+
+
+/* Form Divider */
+.form-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: var(--spacing-lg) 0;
+    color: var(--gray-500);
+}
+
+.form-divider::before,
+.form-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--gray-300);
+}
+
+.form-divider span {
+    padding: 0 var(--spacing);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Login Actions */
+.login-actions {
+    margin-top: var(--spacing-xl);
+    text-align: center;
+}
+
+.btn-text {
+    background: transparent;
+    border: none;
+    color: var(--primary-blue);
+    cursor: pointer;
+    transition: var(--transition);
+    padding: var(--spacing-sm);
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.btn-text:hover {
+    color: var(--primary-blue);
+    transform: translateX(-3px);
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .login-card {
+        padding: 1.5rem 2.5rem;
+    }
+
+    .login-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .login-icon {
+        font-size: 3rem;
+    }
+}
+
+/* User Info Display (quando logado) */
+.user-info-display {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing);
+    background: var(--secondary-blue);
+    border-radius: var(--radius);
+    color: var(--primary-blue);
+    font-weight: 500;
+    height:40px;
+}
+
+.user-info-display i {
+    font-size: 1.2rem;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    aspect-ratio: 1 / 1;
+}
