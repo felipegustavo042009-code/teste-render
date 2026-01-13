@@ -1,4 +1,4 @@
-const API_URL = 'http://192.168.100.67:3000';
+const API_URL = '';
 
 export class sistemaApi {
     constructor() {
@@ -389,4 +389,5 @@ export const api = new sistemaApi();
 
 // Para usar no navegador
 window.sistemaApi = sistemaApi;
+
 window.api = api;
