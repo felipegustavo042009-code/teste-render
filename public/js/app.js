@@ -822,30 +822,44 @@ window.reconhecerMao = reconhecerMao;
 
 window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash;
-    if (!hash) return;
+    if (!hash || !hash.startsWith('#join/')) return;
 
-    if (hash.startsWith('#join/')) {
-        const codigoSala = hash.replace('#join/', '').trim();
+    const codigoSala = hash.replace('#join/', '').trim();
+    
+    // 1. Salva código
+    localStorage.setItem('qrCodeEntry', codigoSala);
+    
+    // 2. Navega para home
+    if (!hash.includes('home')) {
+        window.location.hash = '#home';
         
-        localStorage.setItem('qrCodeEntry', codigoSala);
-        
-        setTimeout(() => {
-            const codigoSalvo = localStorage.getItem('qrCodeEntry');
-            if (codigoSalvo) {
-                mostrarAcessoAluno();
-                mostrarInputCodigo();
+        // 3. Quando home carregar, processa código
+        const processar = setInterval(() => {
+            const homePage = document.querySelector('.home-page');
+            if (homePage) {
+                clearInterval(processar);
                 
                 setTimeout(() => {
-                    const inputCodigo = document.getElementById('room-code-input');
-                    if (inputCodigo) {
-                        inputCodigo.value = codigoSalvo;
-                        showToast(`Código ${codigoSalvo} preenchido automaticamente! Clique em "Entrar na Sala".`, 'success');
+                    const codigo = localStorage.getItem('qrCodeEntry');
+                    if (!codigo) return;
+                    
+                    // Clica botão "Sou Aluno"
+                    const btnAluno = document.querySelector('[onclick*="mostrarAcessoAluno"]');
+                    if (btnAluno) {
+                        btnAluno.click();
                         
-                        localStorage.removeItem('qrCodeEntry');
+                        setTimeout(() => {
+                            const input = document.getElementById('room-code-input');
+                            if (input) {
+                                input.value = codigo;
+                                showToast(`Código ${codigo} preenchido!`, 'success');
+                                localStorage.removeItem('qrCodeEntry');
+                            }
+                        }, 300);
                     }
-                }, 500);
+                }, 200);
             }
-        }, 1500);
+        }, 100);
     }
 });
 
