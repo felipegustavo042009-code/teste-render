@@ -826,29 +826,26 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (hash.startsWith('#join/')) {
         const codigoSala = hash.replace('#join/', '').trim();
-
-        mostrarAcessoAluno();
-        mostrarInputCodigo();
-
+        
+        localStorage.setItem('qrCodeEntry', codigoSala);
+        
         setTimeout(() => {
-            const inputCodigo = document.getElementById('room-code-input');
-            if (inputCodigo) {
-                inputCodigo.value = codigoSala;
-
-                showToast(`Entrando na sala ${codigoSala}...`, 'info');
-
-                entrarSalaPorCodigo(codigoSala);
-            } else {
-                 console.log("Elemento #room-code-input não encontrado ainda. Tentando novamente...");
+            const codigoSalvo = localStorage.getItem('qrCodeEntry');
+            if (codigoSalvo) {
+                mostrarAcessoAluno();
+                mostrarInputCodigo();
+                
                 setTimeout(() => {
                     const inputCodigo = document.getElementById('room-code-input');
                     if (inputCodigo) {
-                        inputCodigo.value = codigoSala;
-                        showToast(`Código ${codigoSala} inserido. Clique em "Entrar na Sala".`, 'info');
+                        inputCodigo.value = codigoSalvo;
+                        showToast(`Código ${codigoSalvo} preenchido automaticamente! Clique em "Entrar na Sala".`, 'success');
+                        
+                        localStorage.removeItem('qrCodeEntry');
                     }
                 }, 500);
             }
-        }, 600);
+        }, 1500);
     }
 });
 
