@@ -839,7 +839,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 entrarSalaPorCodigo(codigoSala);
             } else {
-                console.error("❌ Elemento #room-code-input não encontrado.");
+                 console.log("Elemento #room-code-input não encontrado ainda. Tentando novamente...");
+                setTimeout(() => {
+                    const inputCodigo = document.getElementById('room-code-input');
+                    if (inputCodigo) {
+                        inputCodigo.value = codigoSala;
+                        showToast(`Código ${codigoSala} inserido. Clique em "Entrar na Sala".`, 'info');
+                    }
+                }, 500);
             }
         }, 600);
     }
