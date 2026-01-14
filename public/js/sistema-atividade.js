@@ -373,21 +373,25 @@ class SistemaAtividades {
 
 
 
-    mostrarListaAlunos(idAtividade, tituloAtividade) {
+    async mostrarListaAlunos(idAtividade, tituloAtividade) {
         const connectedStudentsSection = document.getElementById('connected-students-section');
         if (connectedStudentsSection) {
             connectedStudentsSection.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 2. Definir a atividade ativa
         EstadoSala.atividadeAtivaId = idAtividade;
 
-        // 3. Carregar respostas para esta atividade
-        this.atualizarStatusRespostas(idAtividade);
+        mostrarCarregamento();
 
-        // 4. Atualizar a lista de alunos
+        try {
+            await this.atualizarStatusRespostas(idAtividade);
+        } catch (error) {
+            console.error('Erro ao carregar respostas:', error);
+        }
+
         window.GerenciadorSala.atualizarListaAlunos();
 
+        esconderCarregamento();
         showToast(`Visualizando respostas: ${tituloAtividade}`, 'info');
     }
 
