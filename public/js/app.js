@@ -843,20 +843,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     const codigo = localStorage.getItem('qrCodeEntry');
                     if (!codigo) return;
                     
-                    // Clica botão "Sou Aluno"
-                    const btnAluno = document.querySelector('[onclick*="mostrarAcessoAluno"]');
-                    if (btnAluno) {
-                        btnAluno.click();
-                        
-                        setTimeout(() => {
-                            const input = document.getElementById('room-code-input');
-                            if (input) {
-                                input.value = codigo;
-                                showToast(`Código ${codigo} preenchido!`, 'success');
-                                localStorage.removeItem('qrCodeEntry');
-                            }
-                        }, 300);
-                    }
+                    entrarSalaPorCodigo(codigo);
                 }, 200);
             }
         }, 100);
