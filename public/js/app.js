@@ -831,7 +831,7 @@ window.addEventListener('DOMContentLoaded', () => {
         mostrarInputCodigo();
 
         setTimeout(() => {
-            const inputCodigo = document.getElementById('code-input');
+            const inputCodigo = document.getElementById('room-code-input');
             if (inputCodigo) {
                 inputCodigo.value = codigoSala;
 
