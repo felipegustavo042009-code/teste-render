@@ -831,7 +831,7 @@ window.addEventListener('DOMContentLoaded', () => {
         mostrarInputCodigo();
 
         setTimeout(() => {
-            const inputCodigo = document.getElementById('room-code-input');
+            const inputCodigo = document.getElementById('code-input');
             if (inputCodigo) {
                 inputCodigo.value = codigoSala;
 
@@ -842,13 +842,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 console.error("❌ Elemento #room-code-input não encontrado.");
             }
         }, 600);
-    }
-});
-
-window.addEventListener('hashchange', () => {
-    if (window.location.hash.startsWith('#join/')) {
-        const codigoSala = window.location.hash.replace('#join/', '').trim();
-        entrarSalaPorCodigo(codigoSala);
     }
 });
 
